@@ -1,0 +1,42 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.form-container {
+  display: flex;
+}
+
+.bordered {
+  border: 1px solid black;
+  min-width: 300px;
+  margin: 0 5px;
+}
+
+.img-arrow {
+  margin: 10px 0;
+}
+
+.group-name {
+  text-align: start;
+  font-size: 10px;
+  padding: 3px;
+}
+
+.d-none {
+  display: none;
+}
+
+.w-100 {
+  width: 100%;
+}
