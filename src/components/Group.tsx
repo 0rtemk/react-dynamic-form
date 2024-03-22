@@ -19,7 +19,7 @@ const Group: FC<GroupProps> = ({ depth, groupName }) => {
         const fieldKey = `${fieldKeys.length}`;
         setFieldKeys((prevKeys) => [...prevKeys, fieldKey]);
         addFieldValue(groupName, fieldKey, '');
-    }, [fieldKeys, groupName]);
+    }, [fieldKeys, groupName, addFieldValue]);
 
     const createSubGroup = useCallback(() => {
         const newGroupName = `${groupName}.${subGroupNames.length + 1}`;

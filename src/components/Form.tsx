@@ -5,9 +5,12 @@ import { Box, Button } from '@mui/material';
 import Send from '@mui/icons-material/Send';
 
 const Form: FC = () => {
-    const { fieldValues, isDisplay, setIsDisplay } = useStore();
+    const isDisplay = useStore(state => state.isDisplay);
+    const setIsDisplay = useStore(state => state.setIsDisplay);
 
     const handleSubmit = useCallback(() => {
+        const fieldValues = useStore.getState().fieldValues;
+
         for (const groupName in fieldValues) {
             const fields = fieldValues[groupName];
             for (const fieldKey in fields) {
@@ -15,7 +18,7 @@ const Form: FC = () => {
                     console.log(`Группа ${groupName} | поле ${fieldKey} | значение ${fields[fieldKey]}`);
             }
         }
-    }, [fieldValues]);
+    }, []);
 
     return (
         <Box>

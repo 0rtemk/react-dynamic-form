@@ -12,7 +12,7 @@ const FormField: FC<FormFieldProps> = ({ id, index, onChange }) => {
     const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         useStore.getState().fieldValues[index];
         onChange(e.target.value);
-    }, [index]);
+    }, [id, index, onChange]);
 
     return <TextField 
         id={id} 
