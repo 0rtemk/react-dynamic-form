@@ -1,6 +1,8 @@
 import { FC, useCallback } from "react";
 import useStore from "./store";
 import Group from "./Group";
+import { Box, Button } from '@mui/material';
+import Send from '@mui/icons-material/Send';
 
 const Form: FC = () => {
     const { fieldValues } = useStore();
@@ -9,17 +11,26 @@ const Form: FC = () => {
         for (const groupName in fieldValues) {
             const fields = fieldValues[groupName];
             for (const fieldKey in fields) {
-                console.log(`Группа ${groupName} | поле ${fieldKey} | значение ${fields[fieldKey]}`);
+                if(fields[fieldKey] !== '')
+                    console.log(`Группа ${groupName} | поле ${fieldKey} | значение ${fields[fieldKey]}`);
             }
         }
     }, [fieldValues]);
 
 
     return (
-        <div>
+        <Box>
             <Group depth={0} groupName="1" />
-            <button className="send-form-btn" onClick={handleSubmit}>Отправить форму</button>
-        </div>
+            <Button 
+                variant="outlined" 
+                endIcon={<Send />} 
+                onClick={handleSubmit}
+                sx={{
+                    my: 2,
+                    boxShadow: 3,
+                }}
+            >Отправить форму</Button>
+        </Box>
     );
 };
 
