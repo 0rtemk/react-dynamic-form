@@ -13,7 +13,7 @@ interface GroupProps {
 const Group: FC<GroupProps> = ({ depth, groupName }) => {
     const [fieldKeys, setFieldKeys] = useState<string[]>([]);
     const [subGroupNames, setSubGroupNames] = useState<string[]>([]);
-    const { addFieldValue } = useStore();
+    const { addFieldValue, isDisplay } = useStore();
 
     const createField = useCallback(() => {
         const fieldKey = `${fieldKeys.length}`;
@@ -43,24 +43,31 @@ const Group: FC<GroupProps> = ({ depth, groupName }) => {
                     borderRadius: fieldKeys.length ? '10px' : '0',
                     boxShadow: 3,
                 }}>
-                <Box textAlign={'start'} fontSize={'10px'}>{`Группа: ${groupName}`}</Box>
+
+                {isDisplay && 
+                    <Box textAlign={'start'} fontSize={'10px'}>{`Группа: ${groupName}`}</Box>
+                }
+
                 {fieldKeys.map((key, index) => (
                     <Box key={key}>
                         <FormField id={`${groupName}-${key}`} index={index} onChange={(value) => handleFieldChange(key, value)} />
                     </Box>
                 ))}
-                <ButtonGroup
-                    variant="outlined"
-                    sx={{ m: '10px' }}>
-                    <Button
-                        sx={{ m: 0, px: 1, color: 'black', borderColor: 'black' }}
-                        onClick={createField}
-                        endIcon={<TextFields />}>Создать поле</Button>
-                    <Button
-                        sx={{ m: 0, px: 1, color: 'black', borderColor: 'black' }}
-                        onClick={createSubGroup}
-                        endIcon={<AccountTree />}>Создать группу</Button>
-                </ButtonGroup>
+
+                {isDisplay && 
+                    <ButtonGroup
+                        variant="outlined"
+                        sx={{ m: '10px' }}>
+                        <Button
+                            sx={{ m: 0, px: 1, color: 'black', borderColor: 'black' }}
+                            onClick={createField}
+                            endIcon={<TextFields />}>Создать поле</Button>
+                        <Button
+                            sx={{ m: 0, px: 1, color: 'black', borderColor: 'black' }}
+                            onClick={createSubGroup}
+                            endIcon={<AccountTree />}>Создать группу</Button>
+                    </ButtonGroup>
+                }
             </Box>
             <Box display="flex">
                 {subGroupNames.map((name, index) => (

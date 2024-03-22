@@ -8,7 +8,10 @@ interface FieldValues {
 interface FormState {
     fieldValues: { [groupName: string]: FieldValues };
     addFieldValue: (groupName: string, fieldName: string, value: string) => void;
+    isDisplay: boolean;
+    setIsDisplay: () => void;
 }
+
 
 const useStore = create<FormState> () (immer((set) => ({
     fieldValues: {},
@@ -22,6 +25,10 @@ const useStore = create<FormState> () (immer((set) => ({
 
         });
     },
+
+    isDisplay: true,
+    setIsDisplay: () => {set((state) => {state.isDisplay = !state.isDisplay})}
+
 })));
 
 export default useStore;

@@ -5,7 +5,7 @@ import { Box, Button } from '@mui/material';
 import Send from '@mui/icons-material/Send';
 
 const Form: FC = () => {
-    const { fieldValues } = useStore();
+    const { fieldValues, isDisplay, setIsDisplay } = useStore();
 
     const handleSubmit = useCallback(() => {
         for (const groupName in fieldValues) {
@@ -16,7 +16,6 @@ const Form: FC = () => {
             }
         }
     }, [fieldValues]);
-
 
     return (
         <Box>
@@ -30,6 +29,14 @@ const Form: FC = () => {
                     boxShadow: 3,
                 }}
             >Отправить форму</Button>
+            <Button 
+                variant="outlined" 
+                onClick={setIsDisplay}
+                sx={{
+                    ml: 2,
+                    boxShadow: 3,
+                }}
+            >{isDisplay ? 'Скрыть кнопки' : 'Показать кнопки'}</Button>
         </Box>
     );
 };
