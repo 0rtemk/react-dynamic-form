@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { produce } from 'immer';
+import { immer } from 'zustand/middleware/immer';
+// import { produce } from 'immer';
 
 interface FieldValues {
     [fieldName: string]: string;
@@ -10,14 +11,21 @@ interface FormState {
     addFieldValue: (groupName: string, fieldName: string, value: string) => void;
 }
 
-const useStore = create<FormState>((set) => ({
+const isEmptyValue = (value: string) => value.trim() === '';
+
+const useStore = create<FormState> () (immer((set) => ({
     fieldValues: {},
-    addFieldValue: (groupName, fieldName, value) => set(produce((state) => {
-        if (!state.fieldValues[groupName]) {
-            state.fieldValues[groupName] = {};
-        }
-        state.fieldValues[groupName][fieldName] = value;
-    })),
-}));
+    addFieldValue: (groupName, fieldName, value) => {
+        if (isEmptyValue(value)) return;
+
+        set((state) => {
+            if (!state.fieldValues[groupName]) {
+                state.fieldValues[groupName] = { [fieldName]: value };
+            }
+            state.fieldValues[groupName][fieldName] = value;
+
+        });
+    },
+})));
 
 export default useStore;

@@ -1,5 +1,4 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -19,7 +18,7 @@
 
 .bordered {
   border: 1px solid black;
-  min-width: 300px;
+  min-width: 310px;
   margin: 0 5px;
 }
 
@@ -39,4 +38,14 @@
 
 .w-100 {
   width: 100%;
+}
+
+span {
+  padding: 0 15px;
+}
+
+input[type="text"] {
+  width: 230px;
+  height: 20px;
+  margin: 2px 0;
 }
